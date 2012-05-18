@@ -1,0 +1,20 @@
+[user]
+	email = nick@peelman.us
+	name = Nick Peelman
+[core]
+	editor = mate -w
+	quotepath = false
+	excludesfile = /Volumes/Data/Users/peelman/.gitignore_global
+
+[alias] 
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+	br = rebase
+	##
+	# Pimp-out log:
+	# From: http://www.jukie.net/bart/blog/pimping-out-git-log
+	tree = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate"
+	fix = "commit --amend -C HEAD"
+	di = "diff --color"
