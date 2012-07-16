@@ -14,3 +14,7 @@
 .rnd
 .viminfo
 .Xauthority
+.pgadmin_histoqueries
+.pgpass
+.pivotal_tracker
+pgadmin.log
