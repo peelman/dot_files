@@ -8,4 +8,4 @@ PATH=$HOMEBREW_PATH:~/bin:$PATH
 SVN_EDITOR=/usr/local/bin/mate
 EDITOR=/usr/local/bin/mate
 
-source ./.bash_tokens
+source $HOME/.bash_tokens
