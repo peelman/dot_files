@@ -8,8 +8,8 @@ HOMEBREW_PATH=/usr/local/bin:/usr/local/sbin
 PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 PATH=$HOMEBREW_PATH:~/bin:$PATH
 
-SVN_EDITOR=/usr/local/bin/mate
-EDITOR=/usr/local/bin/mate
+declare -x SVN_EDITOR='/usr/local/bin/mate -w'
+declare -x EDITOR='/usr/local/bin/mate -w'
 
 source $HOME/.bash_tokens
 ### Added by the Heroku Toolbelt
