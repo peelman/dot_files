@@ -4,13 +4,17 @@ alias re-register-apps='/System/Library/Frameworks/CoreServices.framework/Framew
 eval "$(rbenv init -)"
 
 
-HOMEBREW_PATH=/usr/local/bin:/usr/local/sbin
-PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
-PATH=$HOMEBREW_PATH:~/bin:$PATH
+declare -x HOMEBREW_PATH=/usr/local/bin:/usr/local/sbin
+declare -x PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+declare -x PATH=$HOMEBREW_PATH:~/bin:$PATH
+# Make clean tarballs and more in Leopard 
+declare -x COPYFILE_DISABLE=true
 
 declare -x SVN_EDITOR='/usr/local/bin/mate -w'
 declare -x EDITOR='/usr/local/bin/mate -w'
 
 source $HOME/.bash_tokens
+
+
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+declare -x PATH="/usr/local/heroku/bin:$PATH"
