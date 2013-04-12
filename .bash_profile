@@ -2,6 +2,18 @@ complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g 
 alias flushcache='dscacheutil -flushcache'
 alias re-register-apps='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias lsdot=" ls -ld .??*"
+
+mtouch() {
+    if [ -z "$2" ] 
+    then
+      local mode='755'
+    else
+      local mode=$2
+    fi
+    touch "$1";
+    chmod $mode "$1";
+}
+
 eval "$(rbenv init -)"
 
 
