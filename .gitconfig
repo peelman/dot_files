@@ -11,7 +11,9 @@
 	co = checkout
 	ci = commit
 	br = branch
-	br = rebase
+	rb = rebase
+	cb = !sh -c 'git status | head -1'
+	cr = !sh -c 'git rev-parse --symbolic-full-name --abbrev-ref @{u}'
 	##
 	# Pimp-out log:
 	# From: http://www.jukie.net/bart/blog/pimping-out-git-log
