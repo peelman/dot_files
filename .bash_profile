@@ -7,6 +7,13 @@ alias flushcache='discoveryutil udnsflushcaches'
 alias re-register-apps='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias lsdot=" ls -ld .??*"
 
+# Grab only the audio from a source via ffmpeg
+ffgetpeg() {
+    ffmpeg -i $1 -vn -acodec copy -bsf:a aac_adtstoasc -flags global_header $2
+}
+
+
+# touch the given file and set the given mod
 mtouch() {
     if [ -z "$2" ]
     then
