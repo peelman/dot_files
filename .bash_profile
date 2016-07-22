@@ -1,4 +1,4 @@
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | sed -e 's/\[\([^]]*\)\]/\1/g' | sort | uniq`;)" ssh
+complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | sed -e 's/\[\([^]]*\)\]\:[0-9]*/\1/g' | sort | uniq`;)" ssh
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ping
 complete -W "info home options install uninstall search list update upgrade" brew
 source `brew --repository`/Library/Contributions/brew_bash_completion.sh
