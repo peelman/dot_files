@@ -1,6 +1,7 @@
 [user]
 	email = nick@peelman.us
 	name = Nick Peelman
+	signingkey = 5999940F
 [core]
 	editor = mate -w
 	quotepath = false
@@ -11,7 +12,7 @@
 	co = checkout
 	ci = commit
 	br = branch
-	rb = rebase
+	br = rebase
 	cb = !sh -c 'git status | head -1'
 	cr = !sh -c 'git rev-parse --symbolic-full-name --abbrev-ref @{u}'
 	##
@@ -26,6 +27,15 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	markdownlog = log --color --pretty=format:'* %s `%Cred%h%Creset` - %C(bold blue)[%an](mailto:%ae)%Creset' --abbrev-commit --dense --no-merges --reverse
 	releasenotes = !sh -c 'git markdownlog ...`git previoustag`'
+	branches = !legit branches
+	graft = !legit graft
+	harvest = !legit harvest
+	publish = !legit publish
+	unpublish = !legit unpublish
+	sprout = !legit sprout
+	sync = !legit sync
+	switch = !legit switch
+	resync = !legit resync
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
@@ -40,3 +50,15 @@
 	keepBackup = true
 [merge]
 	tool = Kaleidoscope
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	gpgsign = true
+	template = /Users/npeelman/.stCommitMsg
