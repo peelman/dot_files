@@ -1,7 +1,17 @@
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | sed -e 's/\[\([^]]*\)\]\:[0-9]*/\1/g' | sort | uniq`;)" ssh
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ping
 complete -W "info home options install uninstall search list update upgrade" brew
-source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+
+### This broke in Homebrew 4.0.x
+### Commenting out in hopes it can be resurrected soon.
+###. $(brew --repository)/Library/Contributions/brew_bash_completion.sh
+
+if test -f ~/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
+  source ~/.gnupg/.gpg-agent-info
+  export GPG_AGENT_INFO
+else
+  eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
 
 alias flushcache='discoveryutil udnsflushcaches'
 alias re-register-apps='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
@@ -23,6 +33,20 @@ mtouch() {
     fi
     touch "$1";
     chmod $mode "$1";
+}
+
+### Recursively replace extensions of files
+### extmv some_folder/ bub aaa
+extmv () {
+  if [ "$1" == "--help" ]
+  then
+    echo "extmv some_folder/ jpeg jpg"
+    echo "replace jpeg with jpg for all files in some_folder"
+    return 0
+  fi
+    find "${1}" -type f -name "*.${2}" |
+    sed "s/\.${2}$//" |
+    xargs -I% mv -i "%.${2}" "%.${3}"
 }
 
 eval "$(rbenv init -)"
